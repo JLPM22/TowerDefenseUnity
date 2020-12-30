@@ -8140,6 +8140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d666f7fcbcaae4468c40b5f686d3664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StaticSwords: 0
+  StaticSwordsPlus: 0
   FullTraining: 0
   EnemyTeamController: {fileID: 17167963251630870}
   UpdateSteps: 10
@@ -9592,6 +9594,7 @@ GameObject:
   - component: {fileID: 4585634098000255021}
   - component: {fileID: 4176610218288710654}
   - component: {fileID: 7036022594229818691}
+  - component: {fileID: 3038821603237441621}
   m_Layer: 5
   m_Name: SwordButton
   m_TagString: Untagged
@@ -9672,7 +9675,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9160437559884958853}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7036022594229818691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9693,6 +9707,34 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3038821603237441621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909977809624042161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: PlayUIHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2950348884104956463
 GameObject:
   m_ObjectHideFlags: 0
@@ -10403,6 +10445,7 @@ GameObject:
   - component: {fileID: 5790071353346511329}
   - component: {fileID: 6755724872761211481}
   - component: {fileID: 8850595746625100306}
+  - component: {fileID: 4634557077451872866}
   m_Layer: 5
   m_Name: SamuraiButton
   m_TagString: Untagged
@@ -10483,7 +10526,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5147218027973831132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8850595746625100306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10504,6 +10558,34 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4634557077451872866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383213201335313414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: PlayUIHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5507663912257191867
 GameObject:
   m_ObjectHideFlags: 0
@@ -12177,6 +12259,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144e5dc5096c07d4eb809a9954685683, type: 3}
+--- !u!224 &6760474432553387229 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6768621645648656292, guid: 144e5dc5096c07d4eb809a9954685683,
+    type: 3}
+  m_PrefabInstance: {fileID: 17167963242951545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6760474432642910090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6768621645521646835, guid: 144e5dc5096c07d4eb809a9954685683,
@@ -12189,9 +12277,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6760474432553387229 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6768621645648656292, guid: 144e5dc5096c07d4eb809a9954685683,
-    type: 3}
-  m_PrefabInstance: {fileID: 17167963242951545}
-  m_PrefabAsset: {fileID: 0}

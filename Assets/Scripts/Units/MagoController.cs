@@ -12,12 +12,14 @@ public class MagoController : UnitController
         if (unit != null)
         {
             unit.AddHealth(-DamagePerHit);
+            SoundController.Instance.PlaySound(SoundController.Sound.MagoAttack, 1.0f);
             return;
         }
         TowerController tower = enemy.GetComponentInParent<TowerController>();
         if (tower != null)
         {
             tower.AddHealth(-DamagePerHit);
+            SoundController.Instance.PlaySound(SoundController.Sound.MagoAttack, 1.0f);
             return;
         }
     }

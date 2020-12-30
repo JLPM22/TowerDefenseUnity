@@ -70,19 +70,24 @@ public class TeamController : MonoBehaviour
             {
                 case Unit.Sword:
                     prefab = SwordPrefab;
+                    SoundController.Instance.PlaySound(SoundController.Sound.Spawn, 2.0f);
                     break;
                 case Unit.Samurai:
                     prefab = SamuraiPrefab;
+                    SoundController.Instance.PlaySound(SoundController.Sound.Spawn, 2.0f);
                     break;
                 case Unit.Mago:
                     prefab = MagoPrefab;
+                    SoundController.Instance.PlaySound(SoundController.Sound.Spawn, 2.0f);
                     break;
                 case Unit.King:
                     prefab = KingPrefab;
+                    SoundController.Instance.PlaySound(SoundController.Sound.Spawn, 2.0f);
                     break;
                 case Unit.Explosion:
                     prefab = null;
                     StartCoroutine(Explosion());
+                    SoundController.Instance.PlaySound(SoundController.Sound.Explosion, 4.0f);
                     break;
                 case Unit.IncrementGold:
                     prefab = null;
@@ -93,6 +98,7 @@ public class TeamController : MonoBehaviour
                         CurrentGoldIncrement += 1;
                         CurrentGoldPerSecond += 5;
                         UpdateGoldPerSecondUI();
+                        SoundController.Instance.PlaySound(SoundController.Sound.ImproveGold);
                     }
                     else
                     {

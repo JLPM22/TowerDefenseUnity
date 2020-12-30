@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(TeamController))]
 public class InputController : MonoBehaviour
@@ -14,9 +15,18 @@ public class InputController : MonoBehaviour
     private TeamController TeamController;
     private int LastGoldIncrement = -1;
 
+    private EventTrigger SwordET, SamuraiET, MagoET, KingET, ExplosionET, GoldET;
+
     private void Awake()
     {
         TeamController = GetComponent<TeamController>();
+
+        SwordET = SwordButton.GetComponent<EventTrigger>();
+        SamuraiET = SamuraiButton.GetComponent<EventTrigger>();
+        MagoET = MagoButton.GetComponent<EventTrigger>();
+        KingET = KingButton.GetComponent<EventTrigger>();
+        ExplosionET = ExplosionButton.GetComponent<EventTrigger>();
+        GoldET = GoldButton.GetComponent<EventTrigger>();
     }
 
     private void OnEnable()
@@ -73,11 +83,17 @@ public class InputController : MonoBehaviour
 
         // Buttons
         SwordButton.interactable = TeamController.Tower.UnitsInTower <= 0 && TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.Sword];
+        SwordET.enabled = SwordButton.interactable;
         SamuraiButton.interactable = TeamController.Tower.UnitsInTower <= 0 && TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.Samurai];
+        SamuraiET.enabled = SwordButton.interactable;
         MagoButton.interactable = TeamController.Tower.UnitsInTower <= 0 && TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.Mago];
+        MagoET.enabled = MagoButton.interactable;
         KingButton.interactable = TeamController.Tower.UnitsInTower <= 0 && TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.King];
+        KingET.enabled = KingButton.interactable;
         ExplosionButton.interactable = TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.Explosion];
+        ExplosionET.enabled = ExplosionButton.interactable;
         GoldButton.interactable = TeamController.CurrentGoldIncrement < 3 && TeamController.Gold >= TeamController.UnitCost[(int)TeamController.Unit.IncrementGold + TeamController.CurrentGoldIncrement];
+        GoldET.enabled = GoldButton.interactable;
 
         // Text
         if (TeamController.CurrentGoldIncrement != LastGoldIncrement)

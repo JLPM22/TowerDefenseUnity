@@ -46,6 +46,7 @@ public class TowerController : MonoBehaviour
             if (HealthBar.gameObject.activeSelf) HealthBar.gameObject.SetActive(false);
             // Effect
             StartCoroutine(DamageEffect());
+            SoundController.Instance.PlaySound(SoundController.Sound.TowerDestroyed, 2.0f);
         }
         else if (Health == InitialHealth)
         {
