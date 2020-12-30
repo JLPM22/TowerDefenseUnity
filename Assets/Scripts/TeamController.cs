@@ -6,7 +6,7 @@ using TMPro;
 
 public class TeamController : MonoBehaviour
 {
-    public event Action OnUnitDead;
+    public event Action<Unit> OnUnitDead;
 
     public Vector3 TowerLocationLocal;
     public bool IsTeam1;
@@ -122,7 +122,10 @@ public class TeamController : MonoBehaviour
     public void UnitKilled(GameObject gO, Unit unit)
     {
         bool removed = Units[(int)unit].Remove(gO);
-        OnUnitDead?.Invoke();
+        for (int i = 0; i < Units.Length; ++i)
+            for (int j = 0; j < Units[i].Count; ++j)
+                if (Units[i][j] == null) Units[i].RemoveAt(j--);
+        OnUnitDead?.Invoke(unit);
         Debug.Assert(removed, "This should not happen");
     }
 
@@ -164,7 +167,7 @@ public class TeamController : MonoBehaviour
         Explosion,
         IncrementGold
     }
-    public static readonly int[] UnitCost = { 50, 100, 150, 250, 200, 100, 250, 500 };
+    public static readonly int[] UnitCost = { 50, 100, 150, 200, 200, 100, 250, 500 };
 
     private void OnDrawGizmos()
     {

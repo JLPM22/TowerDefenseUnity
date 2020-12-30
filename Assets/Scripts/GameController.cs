@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,9 +53,9 @@ public class GameController : MonoBehaviour
 
     private IEnumerator EndEpisodeTime()
     {
-        yield return new WaitForSeconds(120.0f);
-        if (EnableAgent1) AgentTeam1.EndEpisode();
-        if (EnableAgent2) AgentTeam2.EndEpisode();
+        yield return new WaitForSeconds(480.0f);
+        if (EnableAgent1) AgentTeam1.Tie();
+        if (EnableAgent2) AgentTeam2.Tie();
         StopAllCoroutines();
         Reset();
     }

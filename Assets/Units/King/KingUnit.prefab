@@ -74,7 +74,7 @@ MonoBehaviour:
   StopDistance: 0.25
   StopDistanceSamurai: 0.25
   RaycastOffset: 0.31
-  InitialHealth: 250
+  InitialHealth: 350
   HealthBar: {fileID: 7695802196331661360}
   Unit: 3
   DamagePerHit: 25

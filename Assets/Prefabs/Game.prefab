@@ -7849,7 +7849,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17167963251630875}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a25f2d1a67970c445967fe1406b09841, type: 3}
   m_Name: 
@@ -7874,7 +7874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 15
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -7907,6 +7907,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  Discrete: 1
+  ReadFromTraining: 0
   EnemyTeamController: {fileID: 17167963500432060}
 --- !u!114 &17167963251630871
 MonoBehaviour:
@@ -7920,8 +7922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
+  DecisionPeriod: 50
+  TakeActionsBetweenDecisions: 0
 --- !u!1 &17167963410780248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7973,7 +7975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableAgent1: 1
-  EnableAgent2: 0
+  EnableAgent2: 1
   Team1: {fileID: 17167963251630870}
   Team2: {fileID: 17167963500432060}
   Team1Tower: {fileID: 17167962783694218}
@@ -7993,6 +7995,8 @@ GameObject:
   - component: {fileID: 17167963500432062}
   - component: {fileID: 17167963500432061}
   - component: {fileID: 17167963500432063}
+  - component: {fileID: 1903758571720028402}
+  - component: {fileID: 350995106408541528}
   m_Layer: 0
   m_Name: Team2
   m_TagString: Untagged
@@ -8055,7 +8059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 15
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -8068,7 +8072,7 @@ MonoBehaviour:
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PlayerAgent
-  TeamId: 0
+  TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
@@ -8088,6 +8092,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  Discrete: 1
+  ReadFromTraining: 0
   EnemyTeamController: {fileID: 17167963251630870}
 --- !u!114 &17167963500432063
 MonoBehaviour:
@@ -8101,8 +8107,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
+  DecisionPeriod: 50
+  TakeActionsBetweenDecisions: 0
+--- !u!114 &1903758571720028402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17167963500432066}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25f2d1a67970c445967fe1406b09841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwordButton: {fileID: 4176610218288710654}
+  SamuraiButton: {fileID: 6755724872761211481}
+  MagoButton: {fileID: 2617638199184632534}
+  KingButton: {fileID: 6994185121505167107}
+  ExplosionButton: {fileID: 4043920334251700159}
+  GoldButton: {fileID: 423042046045280636}
+  GoldText: {fileID: 8780863849063591298}
+--- !u!114 &350995106408541528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17167963500432066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d666f7fcbcaae4468c40b5f686d3664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FullTraining: 0
+  EnemyTeamController: {fileID: 17167963251630870}
+  UpdateSteps: 10
 --- !u!1 &17167963501108903
 GameObject:
   m_ObjectHideFlags: 0
@@ -11721,7 +11761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 250
+  m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 63c7dbf13865d594d80b9d2318e53345, type: 2}
   m_sharedMaterial: {fileID: 2909156836672800135, guid: 63c7dbf13865d594d80b9d2318e53345,
@@ -12137,12 +12177,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144e5dc5096c07d4eb809a9954685683, type: 3}
---- !u!224 &6760474432553387229 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6768621645648656292, guid: 144e5dc5096c07d4eb809a9954685683,
-    type: 3}
-  m_PrefabInstance: {fileID: 17167963242951545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6760474432642910090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6768621645521646835, guid: 144e5dc5096c07d4eb809a9954685683,
@@ -12155,3 +12189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &6760474432553387229 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6768621645648656292, guid: 144e5dc5096c07d4eb809a9954685683,
+    type: 3}
+  m_PrefabInstance: {fileID: 17167963242951545}
+  m_PrefabAsset: {fileID: 0}

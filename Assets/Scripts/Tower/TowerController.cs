@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TowerController : MonoBehaviour
 {
     public event Action OnDestroyed;
+    public event Action<int> OnDamaged;
 
     public int InitialHealth = 1000;
     public RawImage HealthBar;
@@ -14,9 +15,13 @@ public class TowerController : MonoBehaviour
     public int Health { get; private set; }
 
     private Vector3 InitLocalPosition;
+    private SpriteRenderer Image;
+    private Color ImageColor;
 
     private void Awake()
     {
+        Image = GetComponentInChildren<SpriteRenderer>();
+        ImageColor = Image.color;
         InitLocalPosition = transform.localPosition;
         Reset();
     }
@@ -30,13 +35,17 @@ public class TowerController : MonoBehaviour
 
     public void AddHealth(int amount)
     {
+        int previousHealth = Health;
         Health = Mathf.Clamp(Health + amount, 0, InitialHealth);
+        OnDamaged?.Invoke(previousHealth - Health);
 
         if (Health == 0)
         {
             // Dead
             StartCoroutine(Die());
             if (HealthBar.gameObject.activeSelf) HealthBar.gameObject.SetActive(false);
+            // Effect
+            StartCoroutine(DamageEffect());
         }
         else if (Health == InitialHealth)
         {
@@ -50,6 +59,8 @@ public class TowerController : MonoBehaviour
             Vector3 localScale = HealthBar.rectTransform.localScale;
             localScale.x = (float)Health / InitialHealth;
             HealthBar.rectTransform.localScale = localScale;
+            // Effect
+            StartCoroutine(DamageEffect());
         }
     }
 
@@ -81,5 +92,13 @@ public class TowerController : MonoBehaviour
         {
             UnitsInTower -= 1;
         }
+    }
+
+    private WaitForSeconds WaitDamage = new WaitForSeconds(0.25f);
+    private IEnumerator DamageEffect()
+    {
+        Image.color = new Color(1.0f, ImageColor.g / 4.0f, ImageColor.b / 4.0f, ImageColor.a);
+        yield return WaitDamage;
+        Image.color = ImageColor;
     }
 }

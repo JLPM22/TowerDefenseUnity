@@ -30,10 +30,14 @@ public abstract class UnitController : MonoBehaviour
 
     private GameObject Enemy;
     private int Health;
+    private SpriteRenderer Image;
+    private Color ImageColor;
 
     protected virtual void Awake()
     {
         TeamController = GetComponentInParent<TeamController>();
+        Image = GetComponentInChildren<SpriteRenderer>();
+        ImageColor = Image.color;
     }
 
     private void Start()
@@ -128,6 +132,15 @@ public abstract class UnitController : MonoBehaviour
             // Dead
             StartCoroutine(Die());
             if (HealthBar.gameObject.activeSelf) HealthBar.gameObject.SetActive(false);
+            // Effect
+            if (amount < 0)
+            {
+                StartCoroutine(DamageEffect());
+            }
+            else
+            {
+                StartCoroutine(HealEffect());
+            }
         }
         else if (Health == InitialHealth)
         {
@@ -141,6 +154,15 @@ public abstract class UnitController : MonoBehaviour
             Vector3 localScale = HealthBar.rectTransform.localScale;
             localScale.x = (float)Health / InitialHealth;
             HealthBar.rectTransform.localScale = localScale;
+            // Effect
+            if (amount < 0)
+            {
+                StartCoroutine(DamageEffect());
+            }
+            else
+            {
+                StartCoroutine(HealEffect());
+            }
         }
     }
 
@@ -156,27 +178,27 @@ public abstract class UnitController : MonoBehaviour
 
     private void AttackAnim()
     {
-        Animator.SetBool(DieID, false);
-        Animator.SetBool(AttackID, true);
-        Animator.SetBool(IsWalkingID, false);
+        Animator?.SetBool(DieID, false);
+        Animator?.SetBool(AttackID, true);
+        Animator?.SetBool(IsWalkingID, false);
     }
     private void MoveAnim()
     {
-        Animator.SetBool(DieID, false);
-        Animator.SetBool(AttackID, false);
-        Animator.SetBool(IsWalkingID, true);
+        Animator?.SetBool(DieID, false);
+        Animator?.SetBool(AttackID, false);
+        Animator?.SetBool(IsWalkingID, true);
     }
     private void IdleAnim()
     {
-        Animator.SetBool(DieID, false);
-        Animator.SetBool(AttackID, false);
-        Animator.SetBool(IsWalkingID, false);
+        Animator?.SetBool(DieID, false);
+        Animator?.SetBool(AttackID, false);
+        Animator?.SetBool(IsWalkingID, false);
     }
     private void DieAnim()
     {
-        Animator.SetBool(DieID, true);
-        Animator.SetBool(AttackID, false);
-        Animator.SetBool(IsWalkingID, false);
+        Animator?.SetBool(DieID, true);
+        Animator?.SetBool(AttackID, false);
+        Animator?.SetBool(IsWalkingID, false);
     }
 
     public bool Dead { get; private set; }
@@ -186,9 +208,26 @@ public abstract class UnitController : MonoBehaviour
         {
             Dead = true;
             DieAnim();
-            yield return new WaitForSeconds(2.0f);
+            BoxCollider2D collider = GetComponentInChildren<BoxCollider2D>();
+            if (collider != null) collider.enabled = false;
             TeamController?.UnitKilled(gameObject, Unit);
+            yield return new WaitForSeconds(2.0f);
             Destroy(gameObject);
         }
+    }
+
+    private WaitForSeconds WaitDamage = new WaitForSeconds(0.25f);
+    private IEnumerator DamageEffect()
+    {
+        Image.color = new Color(1.0f, ImageColor.g / 4.0f, ImageColor.b / 4.0f, ImageColor.a);
+        yield return WaitDamage;
+        Image.color = ImageColor;
+    }
+
+    private IEnumerator HealEffect()
+    {
+        Image.color = new Color(ImageColor.r / 4.0f, 1.0f, ImageColor.b / 4.0f, ImageColor.a);
+        yield return WaitDamage;
+        Image.color = ImageColor;
     }
 }

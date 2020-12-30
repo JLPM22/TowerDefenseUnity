@@ -69,8 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsTeam1: 1
   Speed: 0.5
-  AttackSpeed: 1.5
-  AttackDistance: 1.8
+  AttackSpeed: 1.3
+  AttackDistance: 1.5
   StopDistance: 0.5
   StopDistanceSamurai: 0.5
   RaycastOffset: 0.3

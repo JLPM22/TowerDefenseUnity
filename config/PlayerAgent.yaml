@@ -1,29 +1,31 @@
 behaviors:
   PlayerAgent:
-    trainer_type: ppo
+    trainer_type: sac
+    keep_checkpoints: 20
+    checkpoint_interval: 20000
     hyperparameters:
-      batch_size: 32
-      buffer_size: 2048
-      learning_rate: 3.0e-4
-      beta: 5.0e-4
-      epsilon: 0.2
-      lambd: 0.95
-      num_epoch: 3
-      learning_rate_schedule: linear
+      batch_size: 128
+      buffer_size: 100000
+      learning_rate: 3.0e-5
+      learning_rate_schedule: constant
+      buffer_init_steps: 1000
+      tau: 0.005
+      steps_per_update: 10.0
+      save_replay_buffer: false
+      init_entcoef: 0.5
+      reward_signal_steps_per_update: 10.0
     network_settings:
       normalize: false
-      hidden_units: 32
-      num_layers: 3
+      hidden_units: 128
+      num_layers: 2
     reward_signals:
       extrinsic:
-        strength: 0.5
+        strength: 1.0
+        gamma: 0.9
+      curiosity:
+        strength: 0.1
         gamma: 0.99
-      gail:
-        strength: 0.9
-        demo_path: demos/PlayerAgentDemo.demo
-    behavioral_cloning:
-      strength: 0.2
-      demo_path: demos/PlayerAgentDemo.demo
-    max_steps: 1000000
+        encoding_size: 256
+    max_steps: 5000000
     time_horizon: 64
-    summary_freq: 50000
+    summary_freq: 5000
