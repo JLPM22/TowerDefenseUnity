@@ -52,31 +52,27 @@ public class InputController : MonoBehaviour
     private void Update()
     {
         // Input
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            TeamController.AddGold(100);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TeamController.Spawn(TeamController.Unit.Sword);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             TeamController.Spawn(TeamController.Unit.Samurai);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             TeamController.Spawn(TeamController.Unit.Mago);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TeamController.Spawn(TeamController.Unit.King);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             TeamController.Spawn(TeamController.Unit.Explosion);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             TeamController.Spawn(TeamController.Unit.IncrementGold);
         }

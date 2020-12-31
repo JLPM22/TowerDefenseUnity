@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class TrainingAgent : MonoBehaviour
 {
+    public bool PlayWithoutAgent;
     public bool StaticSwords;
     public bool StaticSwordsPlus;
     public bool FullTraining;
@@ -200,6 +201,11 @@ public class TrainingAgent : MonoBehaviour
                 else if (gold >= 0.8f && kings == 0.0f) Action = 4;
                 else if (kings == 1.0f) Action = 2;
             }
+        }
+
+        if (PlayWithoutAgent)
+        {
+            TeamController.Spawn((TeamController.Unit)Action);
         }
     }
 

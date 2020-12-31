@@ -63,8 +63,11 @@ public class PlayerAgent : Agent
         AllyTowerDestroyed = false;
         TieMatch = false;
         TimeBegin = Time.time;
-        for (int i = 0; i < TeamController.Units.Length; ++i) TeamController.Units[i].Clear();
-        for (int i = 0; i < EnemyTeamController.Units.Length; ++i) EnemyTeamController.Units[i].Clear();
+        if (TeamController.Units != null && EnemyTeamController.Units != null)
+        {
+            for (int i = 0; i < TeamController.Units.Length; ++i) TeamController.Units[i].Clear();
+            for (int i = 0; i < EnemyTeamController.Units.Length; ++i) EnemyTeamController.Units[i].Clear();
+        }
         if (ReadFromTraining)
         {
             TrainingAgent.Reset();

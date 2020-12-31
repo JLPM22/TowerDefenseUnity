@@ -21,14 +21,17 @@ public class TeamController : MonoBehaviour
     public GameObject KingPrefab;
     public GameObject ExplosionPrefab;
 
+    public bool MainMenu;
+
     public int Gold { get; private set; }
     public int CurrentGoldPerSecond { get; private set; }
     public int CurrentGoldIncrement { get; private set; }
 
-    [HideInInspector] public List<GameObject>[] Units = new List<GameObject>[4];
+    [HideInInspector] public List<GameObject>[] Units;
 
     private void Start()
     {
+        Units = new List<GameObject>[4];
         for (int i = 0; i < Units.Length; ++i) Units[i] = new List<GameObject>();
         Reset();
     }
@@ -44,6 +47,10 @@ public class TeamController : MonoBehaviour
         StartCoroutine(GoldLoop());
         ResetUnits();
         Tower.Reset();
+        if (MainMenu)
+        {
+            AddGold(200);
+        }
     }
 
     private WaitForSeconds WaitFor1Second = new WaitForSeconds(1.0f);
@@ -156,12 +163,14 @@ public class TeamController : MonoBehaviour
 
     private void UpdateGoldUI()
     {
-        GoldText.text = Gold.ToString();
+        if (GoldText != null)
+            GoldText.text = Gold.ToString();
     }
 
     private void UpdateGoldPerSecondUI()
     {
-        GoldPerSecondText.text = "+" + CurrentGoldPerSecond.ToString();
+        if (GoldPerSecondText != null)
+            GoldPerSecondText.text = "+" + CurrentGoldPerSecond.ToString();
     }
 
     public enum Unit

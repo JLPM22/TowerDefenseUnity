@@ -68,7 +68,7 @@ public class TowerController : MonoBehaviour
     private IEnumerator Die()
     {
         Vector3 localPosition = transform.localPosition;
-        while (localPosition.y > -5.0f)
+        while (localPosition.y > -2.5f)
         {
             localPosition.y -= Time.deltaTime * 2.0f;
             transform.localPosition = localPosition;
