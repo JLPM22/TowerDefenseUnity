@@ -16,6 +16,7 @@ demos/
 results/
 venv/
 backup/
+Builds/
 
 # Visual Studio cache directory
 .vs/
